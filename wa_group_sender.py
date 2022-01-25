@@ -47,9 +47,9 @@ def send_message(receiver ="test"):
         today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
         print(price)
 
-        if price_int >=36300:
-            message_to_send = f"Precio BTC el {today} pasó los $36,300 USD. Precio Actual: {price}"
-            input_box[0].send_keys(message_to_send + Keys.ENTER)
+        #if price_int >=36300:
+        #    message_to_send = f"Precio BTC el {today} pasó los $36,300 USD. Precio Actual: {price}"
+        #    input_box[0].send_keys(message_to_send + Keys.ENTER)
         
         print("Sleeping 5 minutes...")
         #time.sleep(300)
@@ -58,18 +58,3 @@ def send_message(receiver ="test"):
         message_to_send = f"Precio BTC el {today} ---> ${price}"
         input_box[0].send_keys(message_to_send + Keys.ENTER)
         time.sleep(300)
-
-        # try:
-        #     difference_in_price = price-price_story[-2]
-        #     if abs(difference_in_price) >= 500:
-        #         print("Do something... buy or sell ")
-        # except:
-        #     today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
-        #     message_to_send = f"Precio BTC el {today} ---> ${price}"
-        #     input_box[0].send_keys(message_to_send + Keys.ENTER)
-        #     time.sleep(300)
-        # finally:
-        #     today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
-        #     message_to_send = f"Precio BTC el {today} ---> ${price}"
-        #     input_box[0].send_keys(message_to_send + Keys.ENTER)
-        #     time.sleep(300)
