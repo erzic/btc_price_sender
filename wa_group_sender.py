@@ -2,6 +2,8 @@ from logging import warning
 from multiprocessing.connection import wait
 from tokenize import group
 
+from matplotlib.pyplot import get
+from get_crypto_price import get_price
 
 def send_message(message= "Holaa con dos a", person_id ="1"):
     from selenium import webdriver
@@ -13,20 +15,17 @@ def send_message(message= "Holaa con dos a", person_id ="1"):
 
     driver = webdriver.Chrome("chromedriver.exe")
     driver.get("https://web.whatsapp.com")
+    time.sleep(10)
     wait = WebDriverWait(driver, 600)
 
-    target = "test" 
+    target = '"test"'
 
-    x_arg = f"//span[contains(@title,{target})"
+    x_arg = f"//span[contains(@title,{target})]"
     group_title = wait.until(EC.presence_of_all_elements_located((By.XPATH, x_arg)))
-    group_title.click()
+    group_title[0].click()
 
     inp_xpath = "//div[@class ='_13NKt copyable-text selectable-text'][@data-tab='10']"
     input_box = wait.until(EC.presence_of_all_elements_located((By.XPATH, inp_xpath)))
 
-    for i in range(4):
-        input_box.send_keys(message + Keys.ENTER)
-
-
-
-send_message()
+    for i in range(100):
+        input_box[0].send_keys(message + Keys.ENTER)
