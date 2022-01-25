@@ -5,7 +5,12 @@ from tokenize import group
 from matplotlib.pyplot import get
 
 
-def send_message(message= "Holaa con dos a", receiver ="test"):
+def send_message(receiver ="test"):
+    '''
+    Sends a message with the most actual price of a crypto
+    Arguments:
+        -receiver: name of the person or the group. It can be approximate but a precise name works better
+    '''
     from selenium import webdriver
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
@@ -37,10 +42,14 @@ def send_message(message= "Holaa con dos a", receiver ="test"):
         price_int = round(price_int, 2)
         price_story.append(price)
         today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
+        print(price)
 
-        if price_int >=37000:
-            message_to_send = f"Precio BTC el {today} pasó los $37,000 USD. Precio Actual: {price}"
+        if price_int >=36300:
+            message_to_send = f"Precio BTC el {today} pasó los $36,300 USD. Precio Actual: {price}"
             input_box[0].send_keys(message_to_send + Keys.ENTER)
+        
+        print("Sleeping 5 minutes...")
+        time.sleep(300)
         
         #today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
         #message_to_send = f"Precio BTC el {today} ---> ${price}"
