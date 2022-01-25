@@ -16,5 +16,3 @@ def get_price(url = "https://www.google.com/", sign = "BTC", currency = "usd"):
 
     #return soup.prettify()
     return price
-
-print(get_price())
