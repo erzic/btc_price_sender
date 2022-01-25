@@ -5,7 +5,7 @@ from tokenize import group
 from matplotlib.pyplot import get
 from get_crypto_price import get_price
 
-def send_message(message= "Holaa con dos a", person_id ="1"):
+def send_message(message= "Holaa con dos a", receiver ="test"):
     from selenium import webdriver
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
@@ -18,10 +18,12 @@ def send_message(message= "Holaa con dos a", person_id ="1"):
     time.sleep(10)
     wait = WebDriverWait(driver, 600)
 
-    target = '"test"'
+    target = f'{receiver}'
 
-    x_arg = f"//span[contains(@title,{target})]"
+    x_arg = f'//span[@title="{target}"]'
     group_title = wait.until(EC.presence_of_all_elements_located((By.XPATH, x_arg)))
+    print("groups that matches:" ,len(group_title))
+    #[print(i.text) for i in group_title[:5]]
     group_title[0].click()
 
     inp_xpath = "//div[@class ='_13NKt copyable-text selectable-text'][@data-tab='10']"
