@@ -17,7 +17,7 @@ def run_query(connection, sql_query):
     try:
         cursor.execute(sql_query)
         connection.commit()
-        print("Table Created")
+        print("Query ran!!")
     except Error as e:
         print(f"Query failed: {e}")
 
@@ -42,4 +42,6 @@ VALUES
     ("{now_date}", "{currency_str}", {price});
 """
 
-run_query(connection=connect_db("crypto_db.db"), sql_query=query_add_records)
+run_query(
+    connection=connect_db("crypto_db.db"), 
+    sql_query=query_add_records)
