@@ -21,6 +21,15 @@ def run_query(connection, sql_query):
     except Error as e:
         print(f"Query failed: {e}")
 
+def create_db(nombre_db):
+    import sqlite3
+    try:
+        conn = sqlite3.connect(f"{nombre_db}")
+        print(f"{nombre_db} creada!")
+    except:
+        print(f"Error al crear {nombre_db}")
+
+
 def preprocessing_records_db(dates_list, sign_list, price_list):
     joined_lists = zip(dates_list, sign_list, price_list)
     values_str = ""
