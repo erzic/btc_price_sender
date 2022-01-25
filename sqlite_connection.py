@@ -21,27 +21,23 @@ def run_query(connection, sql_query):
     except Error as e:
         print(f"Query failed: {e}")
 
-query = """
-CREATE TABLE IF NOT EXISTS btc_hist (
-    date DATETIME,
-    currency VARCHAR(50) NOT NULL,
-    price FLOAT
-);
-"""
+def preprocessing_records_db(dates_list, sign_list, price_list):
+    joined_lists = zip(dates_list, sign_list, price_list)
+    values_str = ""
+    for i in joined_lists:
+        values_str = ",".join([values_str, str(i)])
+    values_str = values_str[1:].replace("'", "\"")
 
-now_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-currency_str = "BTC"
-price = 30000.01
-print(now_date)
-print(type(now_date))
+    return values_str
 
-query_add_records = f"""
-INSERT INTO
-btc_hist (date, currency, price)
-VALUES
-    ("{now_date}", "{currency_str}", {price});
-"""
+def save_records_db(table, db, records):
+    query = f"""
+    INSERT INTO
+    {table} (date, currency, price)
+    VALUES 
+        {records};
+    """
 
-run_query(
-    connection=connect_db("crypto_db.db"), 
-    sql_query=query_add_records)
+    run_query(
+        connection=connect_db(db), 
+        sql_query=query)

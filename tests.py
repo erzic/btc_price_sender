@@ -12,24 +12,14 @@ for i in range(10):
     price.append(round(float(get_price().replace(",", "")),2))
     sign.append("BTC")
 
-print(dates)
-print(sign)
-print(price)
-
-joined_date = zip(dates, sign, price)
-
-values_str = ""
-
-for i in joined_date:
-    values_str = ",".join([values_str, str(i)])
-
-values_str = values_str[1:].replace("'", "\"")
-
-print(values_str)
-
 def preprocessing_records_db(dates_list, sign_list, price_list):
-    joined_lists = zip(dates, sign, price)
+    joined_lists = zip(dates_list, sign_list, price_list)
     values_str = ""
+    for i in joined_lists:
+        values_str = ",".join([values_str, str(i)])
+    values_str = values_str[1:].replace("'", "\"")
+
+    return values_str
 
 def save_records_db(table, db, records):
     query = f"""
@@ -44,4 +34,6 @@ def save_records_db(table, db, records):
         sql_query=query)
 
 
-save_records_db(table="btc_hist", db = "crypto_db.db", records = values_str)
+records = preprocessing_records_db(dates_list=dates, sign_list=sign, price_list=price)
+
+save_records_db(table="btc_hist", db = "crypto_db.db", records = records)
