@@ -1,3 +1,4 @@
 crypto
 *.exe
 __pycache__
+*.db

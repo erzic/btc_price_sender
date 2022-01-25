@@ -44,7 +44,8 @@ def send_message(receiver ="test"):
         price_int = float(price.replace(",", ""))
         price_int = round(price_int, 2)
         price_story.append(price)
-        today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
+        #today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
+        today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(price)
 
         #if price_int >=36300:
