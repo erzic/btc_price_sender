@@ -3,7 +3,7 @@ from multiprocessing.connection import wait
 from tokenize import group
 
 from matplotlib.pyplot import get
-from get_crypto_price import get_price
+
 
 def send_message(message= "Holaa con dos a", receiver ="test"):
     from selenium import webdriver
@@ -12,6 +12,8 @@ def send_message(message= "Holaa con dos a", receiver ="test"):
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.common.by import By
     import time
+    from get_crypto_price import get_price
+    from datetime import datetime
 
     driver = webdriver.Chrome("chromedriver.exe")
     driver.get("https://web.whatsapp.com")
@@ -30,4 +32,8 @@ def send_message(message= "Holaa con dos a", receiver ="test"):
     input_box = wait.until(EC.presence_of_all_elements_located((By.XPATH, inp_xpath)))
 
     for i in range(100):
-        input_box[0].send_keys(message + Keys.ENTER)
+        price = get_price()
+        today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
+        message_to_send = f"Precio BTC el {today} ---> ${price}"
+        input_box[0].send_keys(message_to_send + Keys.ENTER)
+        time.sleep(60)
