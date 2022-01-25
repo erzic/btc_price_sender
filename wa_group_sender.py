@@ -36,4 +36,4 @@ def send_message(message= "Holaa con dos a", receiver ="test"):
         today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
         message_to_send = f"Precio BTC el {today} ---> ${price}"
         input_box[0].send_keys(message_to_send + Keys.ENTER)
-        time.sleep(60)
+        time.sleep(300)
