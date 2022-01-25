@@ -19,8 +19,11 @@ def send_message(receiver ="test"):
     import time
     from get_crypto_price import get_price
     from datetime import datetime
-
-    driver = webdriver.Chrome("chromedriver.exe")
+    
+    try:
+        driver = webdriver.Chrome("chromedriver.exe")
+    except:
+        driver = webdriver.Chrome("/usr/bin/chromedriver")
     driver.get("https://web.whatsapp.com")
     time.sleep(10)
     wait = WebDriverWait(driver, 600)
@@ -49,12 +52,12 @@ def send_message(receiver ="test"):
             input_box[0].send_keys(message_to_send + Keys.ENTER)
         
         print("Sleeping 5 minutes...")
-        time.sleep(300)
-        
-        #today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
-        #message_to_send = f"Precio BTC el {today} ---> ${price}"
-        #input_box[0].send_keys(message_to_send + Keys.ENTER)
         #time.sleep(300)
+        
+        today = datetime.now().strftime("%d/%b/%Y %H:%M:%S")
+        message_to_send = f"Precio BTC el {today} ---> ${price}"
+        input_box[0].send_keys(message_to_send + Keys.ENTER)
+        time.sleep(300)
 
         # try:
         #     difference_in_price = price-price_story[-2]
