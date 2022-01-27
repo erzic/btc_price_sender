@@ -6,9 +6,6 @@ def telegram_send_message(crypto_to_send = "BTC"):
     from datetime import datetime
     from sqlite_connection import connect_db, run_query, preprocessing_records_db, save_records_db
 
-
-    sending_url = f'https://api.telegram.org/bot{API_KEY}/sendMessage?chat_id={CHAT_ID}&text={message_to_send}'
-
     price_story = []
     dates = []
     sign = []

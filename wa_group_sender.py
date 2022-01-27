@@ -1,8 +1,5 @@
-from logging import warning
 from multiprocessing.connection import wait
-from tokenize import group
 from sqlite_connection import connect_db, run_query, preprocessing_records_db, save_records_db
-
 from matplotlib.pyplot import get
 
 
