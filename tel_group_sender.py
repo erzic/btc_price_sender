@@ -31,7 +31,7 @@ def telegram_send_message(crypto_to_send = "BTC"):
         record_count += 1
         send_count += 1
 
-        if record_count == 5:
+        if record_count == 2:
             print("Adding values to database...")
             
             records = preprocessing_records_db(dates_list=dates, sign_list=sign, price_list=price_story)
@@ -42,7 +42,7 @@ def telegram_send_message(crypto_to_send = "BTC"):
             price_story, dates, sign = [], [], []
             record_count = 0
         
-        if send_count == 5:
+        if send_count == 2:
             message_to_send = f"Precio BTC el {today} ---> ${price}"
             sending_url = f'https://api.telegram.org/bot{API_KEY}/sendMessage?chat_id={CHAT_ID}&text={message_to_send}'
             requests.get(sending_url)
