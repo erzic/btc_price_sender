@@ -17,6 +17,7 @@ def telegram_send_message(crypto_to_send = "BTC"):
     today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     message_to_send = f"Precio BTC el {today} ---> ${price}"
     sending_url = f'https://api.telegram.org/bot{API_KEY}/sendMessage?chat_id={CHAT_ID}&text={message_to_send}'
+    requests.get(sending_url)
 
     while True:
         price = get_price(crypto_sign=crypto_to_send)
