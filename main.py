@@ -1,6 +1,7 @@
 import os
 from wa_group_sender import send_message
 from sqlite_connection import create_db,connect_db, run_query, preprocessing_records_db, save_records_db
+from tel_group_sender import telegram_send_message
 
 db_name = "crypto_db.db"
 table_name = "btc_hist"
@@ -37,15 +38,5 @@ else:
     run_query(connection=connect_db(db_name), 
         sql_query=create_table_query)
 
-
-if not ((os.path.exists("chromedriver.exe")) or (os.path.exists("/home/pi/Downloads/chromedriver"))):
-
-    print(f"Does Chrome Driver Exists? {not os.path.exists('chromedriver.exe')}")
-    print(f"Does Chromium Driver Exists? {not os.path.exists('/home/pi/Downloads/chromedriver')}")
-
-    print("Please download the Chromedriver version according to your browser...")
-    print("If you are using google chrome: https://chromedriver.chromium.org/downloads")
-else:
-    print("Getting BTC Price...")
-
-    send_message(receiver="test_crypto")
+print("Getting BTC Price...")
+telegram_send_message()

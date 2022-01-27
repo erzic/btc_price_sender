@@ -47,3 +47,6 @@ def telegram_send_message(crypto_to_send = "BTC"):
             sending_url = f'https://api.telegram.org/bot{API_KEY}/sendMessage?chat_id={CHAT_ID}&text={message_to_send}'
             requests.get(sending_url)
             send_count = 0
+
+        print("Sleeping 5 minutes...")
+        time.sleep(300)
