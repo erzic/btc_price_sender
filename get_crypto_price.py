@@ -2,8 +2,8 @@ from traceback import print_exception
 import requests
 from bs4 import BeautifulSoup as BS
 
-def get_price(url = "https://www.google.com/", sign = "BTC", currency = "usd"):
-    url = f"{url}search?q={sign}+price+{currency}"
+def get_price(url = "https://www.google.com/", crypto_sign = "BTC", currency = "usd"):
+    url = f"{url}search?q={crypto_sign}+price+{currency}"
     print(url)
     data = requests.get(url)
 
