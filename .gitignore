@@ -2,3 +2,4 @@ crypto
 *.exe
 __pycache__
 *.db
+secret.py
